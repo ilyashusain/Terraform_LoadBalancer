@@ -1,6 +1,6 @@
 # Terraform Modular LB
 
-Here we will create instance groups using Terraform, and we will provide a load balancing services to the instance groups using Terraform modules.
+Here we will create 2 instance groups in different zones using Terraform, and we will provide load balancing services to the instance groups using Terraform modules.
 
 ## Usage Instructions:
 
