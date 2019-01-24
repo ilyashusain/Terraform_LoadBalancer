@@ -8,7 +8,7 @@ module "mig1" {
   size              = 2
   service_port      = 80
   service_port_name = "http"
-  http_health_check = false
+  http_health_check = true
   target_pools      = ["${module.gce-lb-fr1.target_pool}"]
   target_tags       = ["allow", "http-server"]
   ssh_source_ranges = ["0.0.0.0/0"]
@@ -16,6 +16,9 @@ module "mig1" {
   autoscaling_cpu = [{
     target = 0.8
   }]
+  min_replicas      = 2
+  max_replicas      = 5
+  cooldown_period   = 20
 }
 
 module "mig2" {
@@ -28,7 +31,7 @@ module "mig2" {
   size              = 2
   service_port      = 80
   service_port_name = "http"
-  http_health_check = false
+  http_health_check = true
   target_pools      = ["${module.gce-lb-fr2.target_pool}"]
   target_tags       = ["allow", "http-server"]
   ssh_source_ranges = ["0.0.0.0/0"]
@@ -36,6 +39,9 @@ module "mig2" {
   autoscaling_cpu   = [{
     target = 0.8
   }]
+  min_replicas      = 2
+  max_replicas      = 5
+  cooldown_period   = 20
 }
 
 module "gce-lb-fr1" {
