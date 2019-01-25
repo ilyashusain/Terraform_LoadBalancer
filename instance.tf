@@ -60,46 +60,46 @@ module "gce-lb-fr2" {
   target_tags  = ["${module.mig2.target_tags}"]
 }
 
-module "gce-lb-http1" {
-  source            = "GoogleCloudPlatform/lb-http/google"
-  name              = "group1-http-lb"
-  target_tags       = "${module.mig1.target_tags}"
+//module "gce-lb-http1" {
+//  source            = "GoogleCloudPlatform/lb-http/google"
+//  name              = "group1-http-lb"
+//  target_tags       = "${module.mig1.target_tags}"
+//
+//backends          = {
+//    "0" =
+//      { group = "${module.mig1.instance_group}" }
+//    ,
+//  }
+//
+//
+//  backend_params    = [
+//    # health check path, port name, port number, timeout seconds.
+//    "/health_check,http,80,10"
+//  ]
+//}
 
-backends          = {
-    "0" =
-      { group = "${module.mig1.instance_group}" }
-    ,
-  }
+//module "gce-lb-http2" {
+//  source            = "GoogleCloudPlatform/lb-http/google"
+//  name              = "group2-http-lb"
+//  target_tags       = "${module.mig2.target_tags}"
+//
+//backends          = {
+//    "0" =
+//      { group = "${module.mig2.instance_group}" }
+//    ,
+//  }
+//
+//
+//  backend_params    = [
+//    # health check path, port name, port number, timeout seconds.
+//    "/health_check,http,80,10"
+//  ]
+//}
 
-
-  backend_params    = [
-    # health check path, port name, port number, timeout seconds.
-    "/health_check,http,80,10"
-  ]
-}
-
-module "gce-lb-http2" {
-  source            = "GoogleCloudPlatform/lb-http/google"
-  name              = "group2-http-lb"
-  target_tags       = "${module.mig2.target_tags}"
-
-backends          = {
-    "0" =
-      { group = "${module.mig2.instance_group}" }
-    ,
-  }
-
-
-  backend_params    = [
-    # health check path, port name, port number, timeout seconds.
-    "/health_check,http,80,10"
-  ]
-}
-
-resource "google_compute_http_health_check" "default" {
-  name         = "authentication-health-check"
-  request_path = "/health_check"
-
-  timeout_sec        = 1
-  check_interval_sec = 1
-}
+//resource "google_compute_http_health_check" "default" {
+//  name         = "authentication-health-check"
+//  request_path = "/health_check"
+//
+//  timeout_sec        = 1
+//  check_interval_sec = 1
+//}
